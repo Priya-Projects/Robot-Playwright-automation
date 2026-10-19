@@ -1,0 +1,104 @@
+# Robot Framework + Playwright UI Automation
+
+UI test automation framework built with **Robot Framework** and **Browser Library** (which runs on **Playwright**). The tests run against [Sauce Demo](https://www.saucedemo.com), a public practice e-commerce site.
+
+> Status: UI tests are complete. API tests (RequestsLibrary) are planned as the next step.
+
+## Tech stack
+
+| Tool | Purpose |
+|---|---|
+| Robot Framework | Test framework and reporting |
+| Browser Library | Robot Framework wrapper around Playwright |
+| Playwright (Node.js) | Drives the browser (Chromium) |
+| Python 3.9+ | Runtime for Robot Framework |
+
+## What is tested
+
+| ID | Scenario |
+|---|---|
+| TC01 | Valid login shows the inventory page |
+| TC02 | Locked-out user sees the correct error message |
+| TC03 | Products are displayed on the inventory page |
+| TC05 | Products Are added to the cart And Cart badge count matches the number of products added |
+| TC06 | Products Are Removed From Cart And Cart Badge Number Decreases Based On Products Removal |
+
+## Project structure
+
+```
+.
+├── resources/
+│   └── ui_keywords.resource    # Variables and reusable keywords (login, add to cart, verifications)
+├── tests/
+│   └── saucedemotests.robot    # Test cases
+├── requirements.txt            # Python dependencies
+└── README.md
+```
+
+Test cases contain only high-level steps. Selectors, test data and keyword logic live in `resources/ui_keywords.resource`, so a locator change is fixed in one place.
+
+## Prerequisites
+
+- Python 3.9 or later
+- Node.js (LTS), required by Playwright
+- Git
+
+## Setup
+
+```powershell
+# 1. Clone the repository
+git clone https://github.com/Priya-Projects/Robot-Playwright-automation.git
+cd Robot-Playwright-automation
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+.venv\Scripts\activate            # Windows (PowerShell)
+# source .venv/bin/activate       # macOS / Linux
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Download the Playwright browsers
+rfbrowser init
+```
+
+## Running the tests
+
+Run all tests:
+
+```powershell
+robot --outputdir results tests/
+```
+
+Run a single test case:
+
+```powershell
+robot --outputdir results --test "TC01*" tests/
+```
+
+Run by tag (once tests are tagged):
+
+```powershell
+robot --outputdir results --include smoke tests/
+```
+
+## Reports
+
+After a run, open these files from the `results/` folder in a browser:
+
+- `report.html`: pass/fail summary
+- `log.html`: step-by-step execution details, including embedded screenshots for failed tests
+
+## Key features
+
+- Page-level keywords kept in a resource file, separate from test cases
+- Assertions built into Browser Library `Get ...` keywords, with automatic retry
+- Screenshot captured on test failure
+- Selectors based on stable attributes (`id`, `data-test`, ARIA roles)
+
+## Roadmap
+
+- [ ] API tests with RequestsLibrary
+- [ ] Combined UI + API test flow
+- [ ] Tags for smoke and regression suites
+- [ ] CI pipeline (GitHub Actions)
