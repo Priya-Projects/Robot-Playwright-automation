@@ -1,6 +1,14 @@
-# Robot Framework + Playwright UI Automation
+# Robot Framework Test Automation: UI + API
 
-UI test automation framework built with **Robot Framework** and **Browser Library** (which runs on **Playwright**). The tests run against [Sauce Demo](https://www.saucedemo.com), a public practice e-commerce site.
+Test automation framework built with **Robot Framework**, covering both UI and REST API testing.
+
+## UI Automation
+
+UI tests are built with **Robot Framework** and **Browser Library** (which runs on **Playwright**). They run against [Sauce Demo](https://www.saucedemo.com), a public practice e-commerce site.
+
+## API Automation
+
+API tests are built with **Robot Framework** and **RequestsLibrary** (which provides HTTP request keywords for REST API testing). They run against [JSONPlaceholder](https://jsonplaceholder.typicode.com), a free public practice API.
 
 ## Tech stack
 
@@ -109,7 +117,6 @@ After a run, open these files from the `results/` folder in a browser:
 
 ## Roadmap
 
-- [ ] API tests with RequestsLibrary
 - [ ] Combined UI + API test flow
 - [ ] Tags for smoke and regression suites
 - [ ] CI pipeline (GitHub Actions)
