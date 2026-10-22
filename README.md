@@ -2,8 +2,6 @@
 
 UI test automation framework built with **Robot Framework** and **Browser Library** (which runs on **Playwright**). The tests run against [Sauce Demo](https://www.saucedemo.com), a public practice e-commerce site.
 
-> Status: UI tests are complete. API tests (RequestsLibrary) are planned as the next step.
-
 ## Tech stack
 
 | Tool | Purpose |
@@ -11,10 +9,11 @@ UI test automation framework built with **Robot Framework** and **Browser Librar
 | Robot Framework | Test framework and reporting |
 | Browser Library | Robot Framework wrapper around Playwright |
 | Playwright (Node.js) | Drives the browser (Chromium) |
+| RequestsLibrary | HTTP client for REST API tests |
 | Python 3.9+ | Runtime for Robot Framework |
 
 ## What is tested
-
+**UI**
 | ID | Scenario |
 |---|---|
 | TC01 | Valid login shows the inventory page |
@@ -22,6 +21,16 @@ UI test automation framework built with **Robot Framework** and **Browser Librar
 | TC03 | Products are displayed on the inventory page |
 | TC05 | Products Are added to the cart And Cart badge count matches the number of products added |
 | TC06 | Products Are Removed From Cart And Cart Badge Number Decreases Based On Products Removal |
+**API**
+| ID | Scenario |
+|---|---|
+| API01 | Get Single User Returns Correct Details |
+| API02 | Get All Posts Returns A List |
+| API03 | Posts Filtered By User Belong To That User |
+| API04 | Create Post Returns Created Data |
+| API05 | Update Post Returns Updated Data |
+| API06 | Delete Post Returns Success |
+| API07| Unknown Post Returns 404 |
 
 ## Project structure
 
@@ -29,8 +38,10 @@ UI test automation framework built with **Robot Framework** and **Browser Librar
 .
 ├── resources/
 │   └── ui_keywords.resource    # Variables and reusable keywords (login, add to cart, verifications)
+    └── api_keywords.resource    # Variables and resusable keywords(GET, POST, UPDATE and DELETE)
 ├── tests/
-│   └── saucedemotests.robot    # Test cases
+│   └── saucedemotests.robot       # UI Test cases
+    |__ api_sampletests.robot      # API Test cases
 ├── requirements.txt            # Python dependencies
 └── README.md
 ```
